@@ -48,7 +48,7 @@ def init_db():
 init_db()
 
 # GEMINI API YAPILANDIRMASI
-GEMINI_API_KEY = "AQ.Ab8RN6K2U4i-R9RNM98Ca7fyKTkA-4FTfVyUxgT5Bl5Q_MOMBg"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 try:
     genai.configure(api_key=GEMINI_API_KEY)
