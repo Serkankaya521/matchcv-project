@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo-icon">⚡</div>
+      <div class="brand-text">Match<span>CV</span> <small>OS</small></div>
+    </div>
+    <div class="nav-right">
+      <span id="visa-badge" class="badge visa-unknown">📍 Vize: Taranıyor...</span>
+      <button id="settings-btn" class="icon-btn" title="Ayarlar">⚙️</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- CV Yükleme -->
+    <section class="card upload-card">
+      <div class="file-drop-zone">
+        <span id="cv-status">📄 PDF CV Yükle veya Değiştir</span>
+        <input type="file" id="cv-input" accept="application/pdf" hidden>
+      </div>
+    </section>
+
+    <!-- İlan Bilgisi -->
+    <section class="card job-card">
+      <div class="job-info">
+        <input type="text" id="job-title-input" class="editable-input title-input" placeholder="Pozisyon Adı">
+        <input type="text" id="company-name-input" class="editable-input company-input" placeholder="Şirket Adı">
+      </div>
+      <div class="button-group">
+        <button id="analyze-btn" class="btn primary-btn">⚡ Analiz Et</button>
+        <button id="save-job-btn" class="btn save-btn">📌 Panoma Kaydet</button>
+      </div>
+    </section>
+
+    <!-- Loader -->
+    <div id="loader" class="loader-box hidden">
+      <div class="spinner"></div>
+      <p>MatchCV AI İşliyor...</p>
+    </div>
+
+    <!-- Sonuç Paneli -->
+    <section id="results-section" class="results-container hidden">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-analysis">📊 Uyum</button>
+        <button class="tab-btn" data-tab="tab-tracker">📌 Tracker</button>
+        <button class="tab-btn" data-tab="tab-tailor">✂️ CV Terzisi</button>
+        <button class="tab-btn" data-tab="tab-autofill">🤖 Auto-Fill</button>
+        <button class="tab-btn" data-tab="tab-cover">📝 Cover Letter</button>
+      </div>
+
+      <!-- Tab 1: Uyum & Dairesel Grafik -->
+      <div id="tab-analysis" class="tab-content active">
+        <div class="score-card">
+          <div class="circle-chart">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="circle-stroke" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <text x="18" y="20.35" class="percentage" id="score-text">0%</text>
+            </svg>
+          </div>
+          <p id="mentor-advice" class="advice-text"></p>
+        </div>
+
+        <div class="section-group">
+          <h5>✅ CV'de Eşleşen Beceriler</h5>
+          <div id="matched-skills" class="pill-wrapper"></div>
+        </div>
+
+        <div class="section-group">
+          <h5>⚠️ Eksik Teknolojiler & Frekans</h5>
+          <div id="missing-skills" class="pill-wrapper"></div>
+        </div>
+
+        <div class="section-group">
+          <h5>🎯 ATS Cümle Önerileri</h5>
+          <ul id="ats-list" class="ats-list"></ul>
+        </div>
+      </div>
+
+      <!-- Tab 2: Tracker (CRM) -->
+      <div id="tab-tracker" class="tab-content">
+        <div class="info-banner">
+          📌 <b>Kayıtlı Başvurularım:</b> İlan durumlarını buradan yönetebilirsiniz.
+        </div>
+        <div id="tracker-list" class="tracker-container"></div>
+      </div>
+
+      <!-- Tab 3: CV Terzisi & Metin İndirme -->
+      <div id="tab-tailor" class="tab-content">
+        <div class="info-banner">
+          💡 <b>İlana Özel CV Özeti:</b> Aşağıdaki metni CV'nizin "Hakkımda" alanına yapıştırın.
+        </div>
+        <textarea id="tailor-text" class="custom-textarea" readonly placeholder="CV revize önerileri..."></textarea>
+        <button id="copy-tailor-btn" class="btn action-btn">📋 Önerilen Metni Kopyala</button>
+        <button id="download-cv-btn" class="btn download-btn">📥 İlana Özel CV Özeti (.txt)</button>
+      </div>
+
+      <!-- Tab 4: Auto-Fill Form Paneli -->
+      <div id="tab-autofill" class="tab-content">
+        <div class="info-banner">
+          🤖 <b>Form Doldurucu:</b> Bilgilerinizi bir kez kaydedin, başvuru formlarında otomatik doldurun.
+        </div>
+        <div class="input-group">
+          <input type="text" id="af-firstname" class="custom-input" placeholder="Adınız">
+          <input type="text" id="af-lastname" class="custom-input" placeholder="Soyadınız">
+          <input type="email" id="af-email" class="custom-input" placeholder="E-posta">
+          <input type="text" id="af-phone" class="custom-input" placeholder="Telefon (+90...)">
+          <input type="text" id="af-linkedin" class="custom-input" placeholder="LinkedIn Profil Linki">
+          <input type="text" id="af-github" class="custom-input" placeholder="GitHub Profil Linki">
+        </div>
+        <button id="trigger-autofill-btn" class="btn primary-btn">⚡ Formu Otomatik Doldur</button>
+      </div>
+
+      <!-- Tab 5: Cover Letter & İK Bağlantısı -->
+      <div id="tab-cover" class="tab-content">
+        <button id="gen-cover-btn" class="btn secondary-btn">✨ Niyet Mektubu (Cover Letter) Üret</button>
+        <textarea id="cover-text" class="custom-textarea" placeholder="Üretilen Niyet Mektubu..."></textarea>
+        <button id="copy-cover-btn" class="btn action-btn hidden">📋 Mektubu Kopyala</button>
+        
+        <div class="divider"></div>
+        <h5>✉️ Şirket İK Uzmanına Bağlan</h5>
+        <a id="hr-linkedin-link" href="#" target="_blank" class="btn hr-link-btn hidden">👤 İK Uzmanının LinkedIn Profiline Git ↗</a>
+        
+        <textarea id="dm-text" class="custom-textarea short-text" readonly placeholder="DM mesajı üretiliyor..."></textarea>
+        <button id="copy-dm-btn" class="btn action-btn">📋 İK Mesajını Kopyala</button>
+      </div>
+    </section>
+
+    <!-- Ayarlar Modalı -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>⚙️ MatchCV Ayarları</h4>
+          <span id="close-modal" class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+          <label class="modal-label">Gemini API Key (İsteğe Bağlı):</label>
+          <input type="password" id="api-key-input" class="custom-input" placeholder="AI Studio Key...">
+          <button id="save-settings-btn" class="btn primary-btn">Kaydet</button>
+          <div class="divider"></div>
+          <button id="clear-cv-btn" class="btn danger-btn">🗑️ Yüklü CV'yi Sil</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

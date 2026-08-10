@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "MatchCV Enterprise - Omnichannel Career OS",
+  "version": "5.0.0",
+  "description": "Universal ATS Matcher, Cloud CRM Tracker, Multi-Platform Support, and Hard ATS Checker.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "*://*.linkedin.com/*",
+    "*://*.indeed.com/*",
+    "*://*.glassdoor.com/*",
+    "*://*.ziprecruiter.com/*",
+    "*://*.monster.com/*",
+    "*://*.careerbuilder.com/*",
+    "*://*.simplyhired.com/*",
+    "*://*.wellfound.com/*",
+    "*://*.dice.com/*",
+    "*://*.builtin.com/*",
+    "*://*.weworkremotely.com/*",
+    "*://*.remote.co/*",
+    "*://*.remotive.com/*",
+    "*://*.greenhouse.io/*",
+    "*://*.lever.co/*",
+    "*://*.myworkdayjobs.com/*",
+    "*://*.smartrecruiters.com/*",
+    "*://*.ashbyhq.com/*",
+    "*://*.bamboohr.com/*",
+    "*://*.breezy.hr/*",
+    "*://*.kariyer.net/*",
+    "*://*.youthall.com/*",
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/*",
+        "*://*.indeed.com/*",
+        "*://*.glassdoor.com/*",
+        "*://*.ziprecruiter.com/*",
+        "*://*.monster.com/*",
+        "*://*.careerbuilder.com/*",
+        "*://*.simplyhired.com/*",
+        "*://*.wellfound.com/*",
+        "*://*.dice.com/*",
+        "*://*.builtin.com/*",
+        "*://*.weworkremotely.com/*",
+        "*://*.remote.co/*",
+        "*://*.remotive.com/*",
+        "*://*.greenhouse.io/*",
+        "*://*.lever.co/*",
+        "*://*.myworkdayjobs.com/*",
+        "*://*.smartrecruiters.com/*",
+        "*://*.ashbyhq.com/*",
+        "*://*.bamboohr.com/*",
+        "*://*.breezy.hr/*",
+        "*://*.kariyer.net/*",
+        "*://*.youthall.com/*"
+      ],
+      "js": ["content_script.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
