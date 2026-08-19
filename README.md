@@ -80,9 +80,9 @@ Navigate to any supported job platform (e.g., LinkedIn, Indeed) to use the exten
 👤 Author
 Serkan Kaya
 
-LinkedIn: linkedin.com/in/your-profile
+LinkedIn: www.linkedin.com/in/serkan-kaya-5569283a0/
 
-GitHub: @your-username
+GitHub: @Serkankaya521
 ├── screenshot-sidepanel.png  # Side panel UI screenshot
 ├── screenshot-results.png   # Analysis score screenshot
 └── README.md                # Project Documentation
