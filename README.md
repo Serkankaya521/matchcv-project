@@ -4,7 +4,7 @@ MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed m
 
 <!-- Product Preview / Demo Banner -->
 <p align="center">
-  <img src="docs/demo-preview.png" alt="MatchCV Extension in Action" width="850"/>
+  <img src="demo-preview.png" alt="MatchCV Extension in Action" width="850"/>
 </p>
 
 ---
@@ -12,7 +12,7 @@ MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed m
 ## 🚀 Key Features
 
 * **Universal Scraping Engine (Omnichannel):** Dynamic SPA DOM parsing supporting LinkedIn, Indeed, Glassdoor, Greenhouse, Lever, Workday, and 40+ job platforms.
-* **Semantic Resume Matcher:** Leverages LLM embeddings via Gemini API to extract hard & soft skills, providing real-time percentage match scoring and missing skill gaps.
+* **Semantic Resume Matcher:** Leverages LLM embeddings via Gemini API to extract hard & soft skills, providing real-time percentage match scoring (e.g., **78% Match**), and missing skill gaps (e.g., **Süreç Yönetimi**, **Raporlama**).
 * **AI Summary Generator:** Generates high-impact, 3-4 sentence professional summary paragraphs tailored specifically to the viewed position.
 * **ATS Bullet Suggestion Engine:** Delivers single-click copyable action bullets to optimize candidate CVs for hard ATS filters.
 * **Real-time Market Salary Benchmark:** Analyzes role levels and location context to offer salary range estimates.
@@ -25,7 +25,7 @@ MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed m
 
 | 1. Live Job Scraping & Side Panel | 2. Semantic Analysis & ATS Match |
 | :---: | :---: |
-| ![Job Scraping View](docs/screenshot-sidepanel.png) | ![Match Score View](docs/screenshot-results.png) |
+| <img src="screenshot-sidepanel.png" width="400"/> | <img src="screenshot-results.png" width="400"/> |
 
 ---
 
@@ -48,11 +48,6 @@ MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed m
 
 ```bash
 matchcv-project/
-├── docs/                    # Screenshots and demo assets
-│   ├── demo-preview.png
-│   ├── screenshot-sidepanel.png
-│   └── screenshot-results.png
-│
 ├── matchcv-backend/
 │   ├── app.py               # FastAPI core, Gemini API Integration, SQLite Quota System
 │   ├── requirements.txt     # Python production dependencies
@@ -64,7 +59,23 @@ matchcv-project/
 │   ├── popup.html           # Secondary Extension Popup View
 │   └── icons/               # Production assets
 │
-└── README.md                # Project Documentation
+├── demo-preview.png         # Main repository banner
+
+* 🚀 Quick Start
+1. Backend Setup
+Bash
+cd matchcv-backend
+pip install -r requirements.txt
+# Set your GEMINI_API_KEY in environment or .env
+uvicorn app:app --reload --port 8000
+2. Chrome Extension Installation
+Open Google Chrome and navigate to chrome://extensions/.
+
+Enable Developer mode (top right toggle).
+
+Click Load unpacked and select the matchcv-extension/ directory.
+
+Navigate to any supported job platform (e.g., LinkedIn, Indeed) to use the extension.
 
 👤 Author
 Serkan Kaya
@@ -72,3 +83,6 @@ Serkan Kaya
 LinkedIn: linkedin.com/in/your-profile
 
 GitHub: @your-username
+├── screenshot-sidepanel.png  # Side panel UI screenshot
+├── screenshot-results.png   # Analysis score screenshot
+└── README.md                # Project Documentation
