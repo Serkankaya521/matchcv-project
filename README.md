@@ -1,6 +1,11 @@
 # ⚡ MatchCV Enterprise OS — Omnichannel AI Career Assistant & ATS Engine
 
-**MatchCV** is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed micro-SaaS platform that bridges the gap between job seekers and Applicant Tracking Systems (ATS). Powered by **Google Gemini 1.5 Flash**, it parses job postings dynamically from 40+ career platforms in real-time and provides semantic match scoring, actionable resume bullet suggestions, salary benchmarking, and automated form auto-filling.
+MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed micro-SaaS platform that bridges the gap between job seekers and Applicant Tracking Systems (ATS). Powered by Google Gemini 1.5 Flash, it parses job postings dynamically from 40+ career platforms in real-time and provides semantic match scoring, actionable resume bullet suggestions, salary benchmarking, and automated form auto-filling.
+
+<!-- Product Preview / Demo Banner -->
+<p align="center">
+  <img src="docs/demo-preview.png" alt="MatchCV Extension in Action" width="850"/>
+</p>
 
 ---
 
@@ -13,6 +18,14 @@
 * **Real-time Market Salary Benchmark:** Analyzes role levels and location context to offer salary range estimates.
 * **Micro-SaaS Ready Architecture:** Built-in quota tracking (10 free monthly analyses), LemonSqueezy subscription webhook handling, and PRO paywall UI.
 * **Native Side Panel UX:** High-speed Drawer UI with tabbed navigation (Analysis, Application Tracker, and PDF Manager) built using vanilla ES6 JavaScript to prevent memory leaks and main-thread blocking.
+
+---
+
+## 📸 Product Walkthrough
+
+| 1. Live Job Scraping & Side Panel | 2. Semantic Analysis & ATS Match |
+| :---: | :---: |
+| ![Job Scraping View](docs/screenshot-sidepanel.png) | ![Match Score View](docs/screenshot-results.png) |
 
 ---
 
@@ -33,8 +46,13 @@
 
 ## 📂 Project Structure
 
-```text
+```bash
 matchcv-project/
+├── docs/                    # Screenshots and demo assets
+│   ├── demo-preview.png
+│   ├── screenshot-sidepanel.png
+│   └── screenshot-results.png
+│
 ├── matchcv-backend/
 │   ├── app.py               # FastAPI core, Gemini API Integration, SQLite Quota System
 │   ├── requirements.txt     # Python production dependencies
@@ -47,3 +65,10 @@ matchcv-project/
 │   └── icons/               # Production assets
 │
 └── README.md                # Project Documentation
+
+👤 Author
+Serkan Kaya
+
+LinkedIn: linkedin.com/in/your-profile
+
+GitHub: @your-username
