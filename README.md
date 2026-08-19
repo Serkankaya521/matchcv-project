@@ -4,7 +4,7 @@ MatchCV is a high-performance, Manifest V3 Chrome Extension and FastAPI-backed m
 
 <!-- Product Preview / Demo Banner -->
 <p align="center">
-  <img src="demo-preview.png" alt="MatchCV Extension in Action" width="850"/>
+  <img src="demo-preview.png" alt="MatchCV Extension in Action" width="450"/>
 </p>
 
 ---
